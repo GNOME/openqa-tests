@@ -13,6 +13,7 @@ sub run {
     assert_script_run('sudo sh -c "echo ForwardToConsole=true >> /etc/systemd/journald.conf"');
     assert_script_run('sudo sh -c "echo TTYPath=/dev/ttyS0 >> /etc/systemd/journald.conf"');
     assert_script_run('sudo systemctl force-reload systemd-journald');
+    select_console('x11');
 }
 
 1;
