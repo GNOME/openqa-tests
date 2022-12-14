@@ -17,6 +17,7 @@ sub init {
 
     $self->SUPER::init();
 
+    $self->add_console('x11', 'tty-console', {tty => 2});
     $self->add_console('user-virtio-terminal', 'virtio-terminal', {});
 }
 
