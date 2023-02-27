@@ -9,6 +9,7 @@ variables:
   OPENQA_NEEDLES_BRANCH: master
   S3_ISO_IMAGE_URL: https://os.gnome.org/download/latest/installer_sysupdate_x86_64.iso
   S3_DISK_IMAGE_URL: https://os.gnome.org/download/latest/disk_sysupdate_x86_64.img.xz
+  EXAMPLE_CONTENT_URL: https://gitlab.gnome.org/sthursfield/example-desktop-content/-/jobs/artifacts/main/raw/example-desktop-content.tar.xz?job=build
 
 stages:
 - test
@@ -27,10 +28,11 @@ test-s3-image:
     echo "Fetching test media"
     utils/fetch_test_media.sh $S3_ISO_IMAGE_URL /data/factory/iso/installer.iso
     utils/fetch_test_media.sh $S3_DISK_IMAGE_URL /data/factory/hdd/disk.img.xz
+    utils/fetch_test_media.sh $EXAMPLE_CONTENT_URL /data/factory/other/example-desktop-content.tar.xz
     unxz --threads 0 /data/factory/hdd/disk.img.xz
   - |
     echo "Calculating checksums of test media"
-    md5sum /data/factory/iso/installer.iso /data/factory/hdd/disk.img
+    md5sum /data/factory/iso/installer.iso /data/factory/hdd/disk.img /data/factory/other/example-desktop-content.tar.xz
   - |
     utils/expand_disk.sh /data/factory/hdd/disk.img 40 GB
   script:

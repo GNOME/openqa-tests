@@ -59,4 +59,9 @@ job_templates:
     machine: qemu_x86_64
     settings:
       HDD_1: /disk.img
-
+  gnome_search:
+    product: gnomeos
+    machine: qemu_x86_64
+    settings:
+      ASSET_1: example-desktop-content.tar.xz
+      HDD_1: /disk.img

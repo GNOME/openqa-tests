@@ -95,6 +95,10 @@ if ($testsuite eq "gnome_install") {
 } elsif ($testsuite eq "gnome_locales") {
     autotest::loadtest("tests/gnome_welcome_locales.pm");
 
+} elsif ($testsuite eq "gnome_search") {
+    autotest::loadtest("tests/gnome_welcome.pm");
+    autotest::loadtest("tests/gnome_desktop.pm");
+    autotest::loadtest("tests/content_basic.pm");
 } else {
     die("Invalid testsuite: '$testsuite'");
 }
