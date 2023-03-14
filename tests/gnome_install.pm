@@ -6,6 +6,8 @@ use bootloader;
 sub run {
     my $self = shift;
 
+    switch_network(network_enabled => 0);
+
     bootloader_add_kernel_args(' console=ttyS0 systemd.journald.forward_to_console=1');
 
     assert_and_click('gnome_install_1', timeout => 120, button => 'left');
