@@ -36,6 +36,7 @@ openqa-cli api --apikey $OPENQA_API_KEY --apisecret $OPENQA_API_SECRET \
   WORKER_CLASS=$worker_class \
   | tee --append openqa.log > isos.response.json
 
+echo > isos.response.json
 response=$(cat isos.response.json)
 
 if [ -z "${response}" ]; then
