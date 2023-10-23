@@ -32,3 +32,9 @@ machines:
       VIRTIO_CONSOLE: '1'
       VNC_TYPING_LIMIT: '5'
 
+job_templates:
+  gnome_install:
+    product: gnomeos
+    machine: qemu_x86_64
+    settings:
+      ISO: /installer.iso
