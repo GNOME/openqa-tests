@@ -17,13 +17,17 @@ my $testsuite = testapi::get_required_var('TEST');
 if ($testsuite eq "gnome_install") {
     autotest::loadtest("tests/gnome_install.pm");
     autotest::loadtest("tests/gnome_welcome.pm");
-    autotest::loadtest("tests/gnome_journal_capture_fix.pm");
+    # We can't capture journal output for now - see
+    # https://gitlab.gnome.org/GNOME/openqa-tests/-/issues/50
+    #autotest::loadtest("tests/gnome_journal_capture_fix.pm");
     autotest::loadtest("tests/gnome_disable_update_notification.pm");
     autotest::loadtest("tests/gnome_desktop.pm");
     autotest::loadtest("tests/gnome_shutdown.pm");
 } elsif ($testsuite eq "gnome_apps") {
     autotest::loadtest("tests/gnome_welcome.pm");
-    autotest::loadtest("tests/gnome_journal_capture_fix.pm");
+    # We can't capture journal output for now - see
+    # https://gitlab.gnome.org/GNOME/openqa-tests/-/issues/50
+    #autotest::loadtest("tests/gnome_journal_capture_fix.pm");
     autotest::loadtest("tests/gnome_disable_update_notification.pm");
     autotest::loadtest("tests/gnome_desktop.pm");
     autotest::loadtest("tests/app_baobab.pm");
