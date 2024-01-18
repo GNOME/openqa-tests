@@ -7,8 +7,8 @@ set -e
 CONTAINER_NAME="openqa-single-instance"
 CONTAIMER_IMAGE_NAME="openqa:single-instance"
 DOCKER="$(which podman)"
-GNOME_NEEDLES_GIT_URL="https://gitlab.gnome.org/gnome/openqa-needles"
-GNOME_TESTS_GIT_URL="https://gitlab.gnome.org/gnome/openqa-tests"
+GNOME_NEEDLES_GIT_URL="https://gitlab.gnome.org/GNOME/openqa-needles"
+GNOME_TESTS_GIT_URL="https://gitlab.gnome.org/GNOME/openqa-tests"
 OPENQA_GIT_URL="https://github.com/os-autoinst/openqa"
 
 if [ "$#" -lt 3 ]; then
