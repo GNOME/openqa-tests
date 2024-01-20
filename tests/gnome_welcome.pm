@@ -7,6 +7,12 @@ use constant SLOW_TYPING_SPEED => 13;
 
 sub run {
     my $self = shift;
+
+    # Cat os-release so we dump the image_version/buildid into the logs
+    select_console('user-virtio-terminal');
+    assert_script_run('cat /etc/os-release');
+    select_console('x11');
+
     assert_and_click('gnome_firstboot_welcome', timeout => 600, button => 'left');
     assert_and_click('gnome_firstboot_language', timeout => 10, button => 'left');
     assert_and_click('gnome_firstboot_privacy', timeout => 10, button => 'left');
