@@ -5,7 +5,7 @@ use base 'distribution';
 use strict;
 use warnings;
 use serial_terminal ();
-use testapi qw(diag);
+use testapi;
 
 =head2 init
 
@@ -19,6 +19,7 @@ sub init {
 
     $self->add_console('x11', 'tty-console', {tty => 2});
     $self->add_console('gdm', 'tty-console', {tty => 1});
+    $self->add_console('root-virtio-terminal', 'virtio-terminal', {});
     $self->add_console('user-virtio-terminal', 'virtio-terminal', {});
 }
 
@@ -31,12 +32,20 @@ provided to select_console().
 sub activate_console {
     my ($self, $console, %args) = @_;
 
-    if ($console eq 'user-virtio-terminal') {
-        my $user = $testapi::username;
-        diag "activate_console, console: $console, user: $user";
+    if ($console eq 'root-virtio-terminal') {
+        my $user = 'root';
+        my $password = $testapi::root_password;
+        $self->{serial_term_prompt} = '# ';
 
-        $self->{serial_term_prompt} = $user eq 'root' ? '# ' : '> ';
-        serial_terminal::login($user, $self->{serial_term_prompt});
+        diag "activate_console, console: $console, user: $user, password: $password";
+        serial_terminal::login($user, $password, $self->{serial_term_prompt});
+    } elsif ($console eq 'user-virtio-terminal') {
+        my $user = $testapi::username;
+        my $password = $testapi::password;
+        $self->{serial_term_prompt} = '> ';
+
+        diag "activate_console, console: $console, user: $user, password: $password";
+        serial_terminal::login($user, $password, $self->{serial_term_prompt});
     } else {
         diag 'activate_console called with unknown type, no action';
     }

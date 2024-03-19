@@ -9,6 +9,11 @@ my $distri = testapi::get_required_var('CASEDIR') . '/lib/gnomeosdistribution.pm
 require $distri;
 testapi::set_distribution(gnomeosdistribution->new);
 
+# GNOME OS has no root password by default. In the tests we use SMBIOS to pass
+# a credential to systemd-sysusers that sets a password at boot time.
+$testapi::root_password = 'insecure';
+
+# This user is created during the `gnome_welcome` test by gnome-initial-setup.
 $testapi::username = 'testuser';
 $testapi::password = 'testingtesting123';
 

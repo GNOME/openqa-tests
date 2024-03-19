@@ -64,14 +64,15 @@ sub set_serial_prompt {
 
    login($user);
 
-Enters root's name and password to login. Also sets the prompt to something static without ANSI
+Enters username and password to login. Also sets the prompt to something static without ANSI
 escape sequences (i.e. a single #) and changes the terminal width.
 
 =cut
 
 sub login {
-    die 'Login expects two arguments' unless @_ == 2;
+    die 'Login expects three arguments' unless @_ == 3;
     my $user = shift;
+    my $password = shift;
     my $prompt = shift;
     my $escseq = qr/(\e [\(\[] [\d\w]{1,2})/x;
 
@@ -92,7 +93,7 @@ sub login {
         die 'Failed to wait for password prompt' unless wait_serial($re, timeout => 3);
     }
 
-    if (length $testapi::password) {
+    if (length $password) {
         die 'Failed to wait for password prompt' unless wait_serial(qr/Password:\s*$/i, timeout => 30);
         type_password;
         send_key 'ret';
