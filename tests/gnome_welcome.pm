@@ -7,6 +7,11 @@ use constant SLOW_TYPING_SPEED => 13;
 
 sub run {
     my $self = shift;
+
+    select_console('root-virtio-terminal');
+    assert_script_run('whoami');
+    select_console('x11');
+
     assert_and_click('gnome_firstboot_welcome', timeout => 600, button => 'left');
     assert_and_click('gnome_firstboot_language', timeout => 10, button => 'left');
     assert_and_click('gnome_firstboot_privacy', timeout => 10, button => 'left');

@@ -25,7 +25,7 @@ machines:
       QEMUCPUS: '2'
       QEMUPORT: '20012'
       QEMURAM: '2560'
-      QEMU_SMBIOS: 'type=11,path=/tests/config/smbios.txt'
+      QEMU_SMBIOS: 'type=11,value=io.systemd.credential:passwd.plaintext-password.root=insecure'
       QEMU_VIDEO_DEVICE: virtio-vga
       UEFI: '1'
       UEFI_PFLASH_CODE: /usr/share/qemu/ovmf-x86_64-code.bin
