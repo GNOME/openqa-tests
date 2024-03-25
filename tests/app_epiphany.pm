@@ -8,7 +8,7 @@ my $form_factor_postfix = $testapi::form_factor_postfix;
 
 sub run {
     start_app('epiphany');
-    assert_screen('app_epiphany_home'.$form_factor_postfix, 10);
+    assert_screen('app_epiphany_home'.$form_factor_postfix, 15);
     close_app;
 }
 

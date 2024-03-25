@@ -18,6 +18,7 @@ sub run {
     send_key('tab');
     send_key('tab');
     send_key('ret');
+    assert_and_click('gnome_firstboot_accounts', timeout => 10, button => 'left');
     assert_screen('gnome_firstboot_aboutyou_1', 10);
     type_string($testapi::username);
     assert_and_click('gnome_firstboot_aboutyou_2', timeout => 10, button => 'left');
