@@ -34,11 +34,11 @@ machines:
       VNC_TYPING_LIMIT: '5'
 
 job_templates:
-  gnome_install:
-    product: gnomeos
-    machine: qemu_x86_64
-    settings:
-      ISO: /installer.iso
+  #gnome_install:
+  #  product: gnomeos
+  #  machine: qemu_x86_64
+  #  settings:
+  #    ISO: /installer.iso
   gnome_apps:
     product: gnomeos
     machine: qemu_x86_64
