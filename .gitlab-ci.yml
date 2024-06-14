@@ -28,7 +28,7 @@ test-s3-image:
     utils/fetch_test_media.sh $S3_DISK_IMAGE_URL /data/factory/hdd/disk.img.xz
     unxz --threads 0 /data/factory/hdd/disk.img.xz
   - |
-    echo "Calculating checksums of test media"
+    echo "Calculating checksums of test medium"
     md5sum /data/factory/hdd/disk.img
   - |
     utils/expand_disk.sh /data/factory/hdd/disk.img 40 GB
