@@ -14,12 +14,6 @@ parser.add_argument(
     help="Specify type (installer or disk)"
 )
 parser.add_argument(
-    "--variant",
-    default="ostree",
-    choices=["sysupdate", "ostree"],
-    help="Specify variant (sysupdate or ostree)"
-)
-parser.add_argument(
     "--arch",
     default="x86_64",
     choices=["x86_64"],
@@ -29,28 +23,22 @@ parser.add_argument(
 args = parser.parse_args()
 
 
-def image_filename(kind, variant, arch) -> str:
+def image_filename(kind, arch) -> str:
     # We allow kind="iso" for backwards compatibility with older versions of
     # this script.
     if kind in ["installer", "iso"]:
         extension = "iso"
     else:
         extension = "img.xz"
-    return f"{kind}_{variant}_{arch}.{extension}"
+    return f"{kind}_{arch}.{extension}"
 
 
 version = args.tag or args.pipeline
 if args.latest:
-    filename = image_filename(args.kind, args.variant, args.arch)
+    filename = image_filename(args.kind, args.arch)
     print(f"https://os.gnome.org/download/latest/{filename}")
 else:
-    if args.variant == "sysupdate":
-        if args.kind in ["installer", "iso"]:
-            print(f"https://os.gnome.org/download/{version}/gnome_os_sysupdate_installer_{version}-x86_64.iso")
-        elif args.kind == "disk":
-            print(f"https://os.gnome.org/download/{version}/disk_sysupdate_{version}-x86_64.img.xz")
-    else:
-        if args.kind in ["installer", "iso"]:
-            print(f"https://os.gnome.org/download/{version}/gnome_os_installer_{version}.iso")
-        elif args.kind == "disk":
-            print(f"https://os.gnome.org/download/{version}/disk_{version}.img.xz")
+    if args.kind in ["installer", "iso"]:
+        print(f"https://os.gnome.org/download/{version}/gnome_os_installer_{version}.iso")
+    elif args.kind == "disk":
+        print(f"https://os.gnome.org/download/{version}/disk_{version}-x86_64.img.xz")
