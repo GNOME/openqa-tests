@@ -28,11 +28,10 @@ sub run {
     # See: <https://gitlab.gnome.org/GNOME/gnome-initial-setup/-/issues/156>.
     click_lastmatch(point_id => "search_entry");
     type_string('London, East', wait_screen_change => 6, max_interval => SLOW_TYPING_SPEED);
-    assert_and_click('gnome_firstboot_timezone_2', timeout => 20, button => 'left');
-    # We need to move focus to the next button, so we use tab and once the button is in focus, then enter to click it.
-    send_key('tab');
-    send_key('tab');
+    # This selects the city on the map
+    send_key('down');
     send_key('ret');
+    assert_and_click('gnome_firstboot_timezone_3', timeout => 20, button => 'left');
 
     # User setup
     assert_screen('gnome_firstboot_aboutyou_1', 10);
