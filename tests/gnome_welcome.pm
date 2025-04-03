@@ -8,8 +8,14 @@ use constant SLOW_TYPING_SPEED => 13;
 sub run {
     my $self = shift;
 
-    # Wait for machine to boot
-    assert_and_click('gnome_firstboot_welcome', timeout => 600, button => 'left');
+    # Wait for machine to boot.
+    #
+    # The default boot timeout is 600 seconds (10 minutes), in case something
+    # goes really slow on a test runner. You can set GNOMEOS_BOOT_TIMEOUT variable
+    # to give a shorter timeout, which means if the first needle doesn't match,
+    # you'll get an error much sooner.
+    my $boot_timeout = get_var("GNOMEOS_BOOT_TIMEOUT", 600);
+    assert_and_click('gnome_firstboot_welcome', timeout => $boot_timeout, button => 'left');
 
     # Language and privacy settings
     assert_and_click('gnome_firstboot_language', timeout => 10, button => 'left');
